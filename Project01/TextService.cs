@@ -47,5 +47,23 @@ namespace Project01
             string firstLetter = clearText.Substring(0, 1);
             return firstLetter;
         }
+        //Quest12
+        public string UpFirstLetterInWord(string text)
+        {
+            string clearText = techService.ClearText(text);
+            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            {
+                Console.WriteLine("Сработала защита в GetFirstLetterInWord");
+                return null;
+            }
+            char[] charArray = new char[clearText.Length];
+            for (int i = 0; i < text.Length; i++)
+            {
+                charArray[i] = clearText[i];
+            }
+            charArray[0] = char.ToUpper(charArray[0]);
+            clearText = new string(charArray);
+            return clearText;
+        }
     }
 }

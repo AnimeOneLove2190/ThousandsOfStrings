@@ -30,26 +30,22 @@ namespace Project01
             {
                 copy[i] = text[i];
             }
+            const char Space = (char)32;
             for (int i = 0; i < text.Length; i++)
             {
                 if (char.IsDigit(text[i]) || char.IsSymbol(text[i]) || char.IsWhiteSpace(text[i]) || char.IsPunctuation(text[i]))
                 {
-                    copy[i] = (char)32;
+                    copy[i] = Space;
                 }
             }
             string textCopy = new string(copy);
-            for (int i = 0; i < textCopy.Length; i++)
+            while (textCopy.Contains("  "))
             {
                 textCopy = textCopy.Replace("  ", " ");
             }
             if (char.IsWhiteSpace(copy[0]))
             {
-                char[] newCopy = new char[textCopy.Length - 1];
-                for (int i = 0; i < newCopy.Length; i++)
-                {
-                    newCopy[i] = textCopy[i + 1];
-                }
-                textCopy = new string(newCopy);
+                textCopy = textCopy.Trim();
             }
             if (string.IsNullOrEmpty(textCopy))
             {
