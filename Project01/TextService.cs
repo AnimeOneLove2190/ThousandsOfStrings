@@ -65,5 +65,90 @@ namespace Project01
             clearText = new string(charArray);
             return clearText;
         }
+        //Quest13
+        public string GetSurnameAndInitials(string text)
+        {
+            string clearText = techService.ClearText(text);
+            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            {
+                Console.WriteLine("Сработала защита в GetFirstLetterInWord");
+                return null;
+            }
+            char[] charArray = new char[clearText.Length];
+            for (int i = 0; i < text.Length; i++)
+            {
+                charArray[i] = clearText[i];
+            }
+            string[] initials = new string[2];
+            int savedCounter = 0;
+            char[] charSurname = new char[text.Length];
+            for (int i = 1; i <= charArray.Length; i++)
+            {
+                if (char.IsUpper(charArray[i]))
+                {
+                    charSurname = new char[i];
+                    for (int j = 0; j < charSurname.Length; j++)
+                    {
+                        charSurname[j] = charArray[j];
+                    }
+                    savedCounter = i;
+                    break;
+                }
+            }
+            for (int i = savedCounter, j = 0; i < clearText.Length && j < initials.Length; i++)
+            {
+                if (char.IsUpper(charArray[i]))
+                {
+                    initials[j] = $"{charArray[i]}";
+                    j++;
+                }
+            }
+            string surname = new string(charSurname);
+            string surnameAndInitials = $"{surname} {initials[0]}. {initials[1]}.";
+            return surnameAndInitials;
+        }
+        //Quest14
+        public string GetSubstring(string text, int firstLetter, int lastLetter)
+        {
+            string clearText = techService.ClearText(text);
+            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            {
+                Console.WriteLine("Сработала защита в GetFirstLetterInWord");
+                return null;
+            }
+            char[] charArray = new char[clearText.Length];
+            for (int i = 0; i < text.Length; i++)
+            {
+                charArray[i] = clearText[i];
+            }
+            if (firstLetter < 0 || lastLetter >= clearText.Length)
+            {
+                return null;
+            }
+            string substring = clearText.Substring(firstLetter, lastLetter);
+            return substring;
+        }
+        //Quest15
+        public string GetRussianAlphabet()
+        {
+            const int startLetter = 1072;
+            const int endLetter = 1103;
+            const int ё = 1105;
+            char[] charArray = new char[endLetter - startLetter + 2];
+            for (int i = startLetter, j = startLetter, z = 0; z < charArray.Length; z++, i++)
+            {
+                if (i == 1078)
+                {
+                    charArray[z] = (char)ё;
+                    continue;
+                }
+                charArray[z] = (char)j;
+                j++;
+            }
+            string alphabetLower = new string(charArray);
+            string alphabetUpper = alphabetLower.ToUpper();
+            string alphabetFull = $"{alphabetLower}{alphabetUpper}";
+            return alphabetFull;
+        }
     }
 }
