@@ -6,6 +6,7 @@ namespace Project01
 {
     class TextService
     {
+        //Зелёненькие квесты
         //Што это??
         readonly TechnicalService techService = new TechnicalService();
         //Quest03
@@ -53,11 +54,11 @@ namespace Project01
             string clearText = techService.ClearText(text);
             if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
             {
-                Console.WriteLine("Сработала защита в GetFirstLetterInWord");
+                Console.WriteLine("Сработала защита в UpFirstLetterInWord");
                 return null;
             }
             char[] charArray = new char[clearText.Length];
-            for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < clearText.Length; i++)
             {
                 charArray[i] = clearText[i];
             }
@@ -71,11 +72,11 @@ namespace Project01
             string clearText = techService.ClearText(text);
             if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
             {
-                Console.WriteLine("Сработала защита в GetFirstLetterInWord");
+                Console.WriteLine("Сработала защита в GetSurnameAndInitials");
                 return null;
             }
             char[] charArray = new char[clearText.Length];
-            for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < clearText.Length; i++)
             {
                 charArray[i] = clearText[i];
             }
@@ -113,11 +114,11 @@ namespace Project01
             string clearText = techService.ClearText(text);
             if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
             {
-                Console.WriteLine("Сработала защита в GetFirstLetterInWord");
+                Console.WriteLine("Сработала защита в GetSubstring");
                 return null;
             }
             char[] charArray = new char[clearText.Length];
-            for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < clearText.Length; i++)
             {
                 charArray[i] = clearText[i];
             }
@@ -149,6 +150,142 @@ namespace Project01
             string alphabetUpper = alphabetLower.ToUpper();
             string alphabetFull = $"{alphabetLower}{alphabetUpper}";
             return alphabetFull;
+        }
+        //Quest16
+        public string GetEnglishAlphabet()
+        {
+            const int startLetter = 97;
+            const int endLetter = 122;
+            char[] charArray = new char[endLetter - startLetter + 1];
+            for (int i = startLetter, j = 0; j < charArray.Length; i++, j++)
+            {
+                charArray[j] = (char)i;
+            }
+            string alphabetLower = new string(charArray);
+            string alphabetUpper = alphabetLower.ToUpper();
+            string alphabetFull = $"{alphabetLower}{alphabetUpper}";
+            return alphabetFull;
+        }
+        //Quest17
+        public int GetCountOfRussianLetters(string text)
+        {
+            string clearText = techService.ClearText(text);
+            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            {
+                Console.WriteLine("Сработала защита в GetCountOfRussianLetters");
+                return 0;
+            }
+            char[] charArray = new char[clearText.Length];
+            for (int i = 0; i < clearText.Length; i++)
+            {
+                charArray[i] = clearText[i];
+            }
+            const int startLetter = 1040;
+            const int endLetter = 1103;
+            const int ё = 1105;
+            const int Ё = 1025;
+            int countOfRussianLetters = 0;
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                if ((charArray[i] >= startLetter) && (charArray[i] <= endLetter) || charArray[i] == ё || charArray[i] == Ё)
+                {
+                    countOfRussianLetters++;
+                }
+            }
+            return countOfRussianLetters;
+        }
+        //Quest18
+        public int GetCountOfEnglishLetters(string text)
+        {
+            string clearText = techService.ClearText(text);
+            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            {
+                Console.WriteLine("Сработала защита в GetCountOfEnglishLetters");
+                return 0;
+            }
+            char[] charArray = new char[clearText.Length];
+            for (int i = 0; i < clearText.Length; i++)
+            {
+                charArray[i] = clearText[i];
+            }
+            const int startLetterLow = 65;
+            const int endLetterLow = 90;
+            const int startLetterUp = 97;
+            const int endLetterUp = 122;
+            int countOfEnglishLetters = 0;
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                if ((charArray[i] >= startLetterLow) && (charArray[i] <= endLetterLow) || (charArray[i] >= startLetterUp) && (charArray[i] <= endLetterUp))
+                {
+                    countOfEnglishLetters++;
+                }
+            }
+            return countOfEnglishLetters;
+        }
+        //Quest20
+        public string GetMostFrequentLetter(string text)
+        {
+            string clearText = techService.ClearText(text);
+            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            {
+                Console.WriteLine("Сработала защита в GetMostFrequentLetter");
+                return null;
+            }
+            char[] charArray = new char[clearText.Length];
+            for (int i = 0; i < clearText.Length; i++)
+            {
+                charArray[i] = clearText[i];
+            }
+            string mostFrequentLetter = string.Empty;
+            int[] countsOfLetters = new int[clearText.Length];
+            int maxValue = 0;
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                countsOfLetters[i] = 0;
+            }
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                for (int j = 0; j < charArray.Length; j++)
+                {
+                    if (charArray[i] == charArray[j])
+                    {
+                        countsOfLetters[i]++;
+                    }
+                }
+            }
+            for (int i = 0; i < countsOfLetters.Length; i++)
+            {
+                if (maxValue < countsOfLetters[i])
+                {
+                    maxValue = countsOfLetters[i];
+                }
+            }
+            for (int i = 0; i < countsOfLetters.Length; i++)
+            {
+                if (countsOfLetters[i] == maxValue)
+                {
+                    mostFrequentLetter = $"{charArray[i]}";
+                    return mostFrequentLetter;
+                }
+            }
+            return mostFrequentLetter;
+        }
+        //Quest21
+        public string ReverseText(string text)
+        {
+            string clearText = techService.ClearText(text);
+            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            {
+                Console.WriteLine("Сработала защита в ReverseText");
+                return null;
+            }
+            char[] reversedCharArray = new char[clearText.Length];
+            for (int i = 0, j = clearText.Length - 1; i < clearText.Length && j >= 0; i++, j--)
+            {
+                reversedCharArray[i] = clearText[j];
+            }
+            string reversedText = new string(reversedCharArray);
+            return reversedText;
         }
     }
 }

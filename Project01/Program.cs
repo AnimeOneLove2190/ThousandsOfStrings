@@ -30,8 +30,23 @@ namespace Project01
             string substring = textService.GetSubstring(fio, 1, 22);
             Console.WriteLine(substring);
             //Quest15
-            string alphabet = textService.GetRussianAlphabet();
-            Console.WriteLine(alphabet);
+            string russianAlphabet = textService.GetRussianAlphabet();
+            Console.WriteLine(russianAlphabet);
+            //Quest16
+            string englishAlphabet = textService.GetEnglishAlphabet();
+            Console.WriteLine(englishAlphabet);
+            //Quest17
+            int countOfRussianLetters = textService.GetCountOfRussianLetters(meaninglessTextOne);
+            Console.WriteLine(countOfRussianLetters);
+            //Quest18
+            int countOfEnglishLetters = textService.GetCountOfEnglishLetters(meaninglessTextOne);
+            Console.WriteLine(countOfEnglishLetters);
+            //Quest20
+            string mostFrequentLetter = textService.GetMostFrequentLetter(fio);
+            Console.WriteLine(mostFrequentLetter);
+            //Quest21
+            string reversedText = textService.ReverseText(fio);
+            Console.WriteLine(reversedText);
         }
     }
 }
