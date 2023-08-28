@@ -15,6 +15,9 @@ namespace Project01
             //Quest04
             int countOfSearchWords = textService.GetCountOfSearchWords(meaninglessTextOne, "text");
             Console.WriteLine(countOfSearchWords);
+            //Quest06
+            int countOfSearchLetter = textService.GetCountOfSearchLetter(meaninglessTextOne, 't');
+            Console.WriteLine(countOfSearchLetter);
             //Quest11
             string firstLetter = textService.GetFirstLetterInWord(meaninglessTextOne);
             Console.WriteLine(firstLetter);
@@ -47,6 +50,32 @@ namespace Project01
             //Quest21
             string reversedText = textService.ReverseText(fio);
             Console.WriteLine(reversedText);
+            //Жёлтенькие квесты
+            //Quest01
+            string kek = "saippuakivikauppias";
+            bool isPalindrome = textService.IsPalindrome(kek);
+            Console.WriteLine(isPalindrome);
+            //Quest02
+            string moshkara = "Мошкара";
+            string romashka = "Ромашка";
+            bool isAnagram = textService.IsAnagram(moshkara, romashka);
+            Console.WriteLine(isAnagram);
+            //Quest09
+            char curvaLetter = 'и';
+            string[] curvaArray = textService.SplitTextByLetter(fio, curvaLetter);
+            techService.Write1DArray(curvaArray);
+            //Quest22
+            int countOfWords = textService.GetCountOfWords(meaninglessTextOne);
+            Console.WriteLine(countOfWords);
+            //Quest24
+            string longestWord = textService.GetLongestWord(meaninglessTextOne);
+            Console.WriteLine(longestWord);
+            //Quest25
+            int longestSubstringLength = textService.GetLongestSubstringLength(meaninglessTextOne);
+            Console.WriteLine(longestSubstringLength);
+            //Quest27
+            int countOfDigits = textService.GetCountOfDigits(meaninglessTextOne);
+            Console.WriteLine(countOfDigits);
         }
     }
 }

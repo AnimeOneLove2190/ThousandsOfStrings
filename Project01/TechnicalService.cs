@@ -54,5 +54,20 @@ namespace Project01
             }
             return textCopy;
         }
+        public void BubbleSort(char[] charArray)
+        {
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                for (int j = 0; j < charArray.Length - i - 1; j++)
+                {
+                    if (charArray[j] > charArray[j + 1])
+                    {
+                        int temporaryStorage = charArray[j];
+                        charArray[j] = charArray[j + 1];
+                        charArray[j + 1] = (char)temporaryStorage;
+                    }
+                }
+            }
+        }
     }
 }

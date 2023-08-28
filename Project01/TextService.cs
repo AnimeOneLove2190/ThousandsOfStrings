@@ -36,11 +36,36 @@ namespace Project01
             }
             return countOfSearchWords;
         }
+        //Quest06
+        public int GetCountOfSearchLetter(string text, char searchSymbol)
+        {
+            string clearText = techService.ClearText(text);
+            if (string.IsNullOrEmpty(text))
+            {
+                Console.WriteLine("Сработала защита в GetCountOfSearchWords");
+                return 0;
+            }
+            clearText = clearText.ToLower();
+            char[] charArray = new char[clearText.Length];
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                charArray[i] = clearText[i];
+            }
+            int countOfSearchWords = 0;
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                if (charArray[i] == searchSymbol)
+                {
+                    countOfSearchWords++;
+                }
+            }
+            return countOfSearchWords;
+        }
         //Quest11
         public string GetFirstLetterInWord(string text)
         {
             string clearText = techService.ClearText(text);
-            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            if (string.IsNullOrEmpty(clearText) || string.IsNullOrWhiteSpace(clearText))
             {
                 Console.WriteLine("Сработала защита в GetFirstLetterInWord");
                 return null;
@@ -70,7 +95,7 @@ namespace Project01
         public string GetSurnameAndInitials(string text)
         {
             string clearText = techService.ClearText(text);
-            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            if (string.IsNullOrEmpty(clearText) || string.IsNullOrWhiteSpace(clearText))
             {
                 Console.WriteLine("Сработала защита в GetSurnameAndInitials");
                 return null;
@@ -112,7 +137,7 @@ namespace Project01
         public string GetSubstring(string text, int firstLetter, int lastLetter)
         {
             string clearText = techService.ClearText(text);
-            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            if (string.IsNullOrEmpty(clearText) || string.IsNullOrWhiteSpace(clearText))
             {
                 Console.WriteLine("Сработала защита в GetSubstring");
                 return null;
@@ -170,7 +195,7 @@ namespace Project01
         public int GetCountOfRussianLetters(string text)
         {
             string clearText = techService.ClearText(text);
-            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            if (string.IsNullOrEmpty(clearText) || string.IsNullOrWhiteSpace(clearText))
             {
                 Console.WriteLine("Сработала защита в GetCountOfRussianLetters");
                 return 0;
@@ -198,7 +223,7 @@ namespace Project01
         public int GetCountOfEnglishLetters(string text)
         {
             string clearText = techService.ClearText(text);
-            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            if (string.IsNullOrEmpty(clearText) || string.IsNullOrWhiteSpace(clearText))
             {
                 Console.WriteLine("Сработала защита в GetCountOfEnglishLetters");
                 return 0;
@@ -226,7 +251,7 @@ namespace Project01
         public string GetMostFrequentLetter(string text)
         {
             string clearText = techService.ClearText(text);
-            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            if (string.IsNullOrEmpty(clearText) || string.IsNullOrWhiteSpace(clearText))
             {
                 Console.WriteLine("Сработала защита в GetMostFrequentLetter");
                 return null;
@@ -274,7 +299,7 @@ namespace Project01
         public string ReverseText(string text)
         {
             string clearText = techService.ClearText(text);
-            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            if (string.IsNullOrEmpty(clearText) || string.IsNullOrWhiteSpace(clearText))
             {
                 Console.WriteLine("Сработала защита в ReverseText");
                 return null;
@@ -286,6 +311,217 @@ namespace Project01
             }
             string reversedText = new string(reversedCharArray);
             return reversedText;
+        }
+        //Жёлтенькие квесты
+        //Quest01
+        public bool IsPalindrome(string text)
+        {
+            string clearText = techService.ClearText(text);
+            if (string.IsNullOrEmpty(clearText) || string.IsNullOrWhiteSpace(clearText))
+            {
+                Console.WriteLine("Сработала защита в IsPalindrome");
+                return false;
+            }
+            clearText = clearText.ToLower();
+            char[] charArray = new char[clearText.Length];
+            char[] reversedCharArray = new char[clearText.Length];
+            for (int i = 0, j = clearText.Length - 1; i < clearText.Length && j >= 0; i++, j--)
+            {
+                charArray[i] = clearText[i];
+                reversedCharArray[i] = clearText[j];
+            }
+            for (int i = 0; i < clearText.Length; i++)
+            {
+                if (!(charArray[i] == reversedCharArray[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        //Quest02
+        public bool IsAnagram(string textOne, string textTwo)
+        {
+            string clearTextOne = techService.ClearText(textOne);
+            string clearTextTwo = techService.ClearText(textTwo);
+            if (string.IsNullOrEmpty(clearTextOne) || string.IsNullOrWhiteSpace(clearTextOne) || string.IsNullOrEmpty(clearTextTwo) || string.IsNullOrWhiteSpace(clearTextTwo))
+            {
+                Console.WriteLine("Сработала защита в IsAnagram");
+                return false;
+            }
+            clearTextOne = clearTextOne.ToLower();
+            clearTextTwo = clearTextTwo.ToLower();
+            if (!(clearTextOne.Length == clearTextTwo.Length))
+            {
+                return false;
+            }
+            char[] charArrayOne = new char[clearTextOne.Length];
+            char[] charArrayTwo = new char[clearTextTwo.Length];
+            for (int i = 0; i < clearTextOne.Length; i++)
+            {
+                charArrayOne[i] = clearTextOne[i];
+                charArrayTwo[i] = clearTextTwo[i];
+            }
+            techService.BubbleSort(charArrayOne);
+            techService.BubbleSort(charArrayTwo);
+            for (int i = 0; i < charArrayOne.Length; i++)
+            {
+                if (!(charArrayOne[i] == charArrayTwo[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        //Quest09
+        public string[] SplitTextByLetter(string text, char seletcedLetter)
+        {
+            string clearText = techService.ClearText(text);
+            if (string.IsNullOrEmpty(clearText) || string.IsNullOrWhiteSpace(clearText))
+            {
+                Console.WriteLine("Сработала защита в SplitTextByLetter");
+                return null;
+            }
+            int savedCounter = 0;
+            int savedCounterPlus = 0;
+            int countOfSelectedLetter = GetCountOfSearchLetter(clearText, seletcedLetter);
+            string[] curvaArray = new string[countOfSelectedLetter + 1];
+            for (int i = 0, o = 0; i < clearText.Length; i++)
+            {
+                if (clearText[i] == seletcedLetter)
+                {
+                    char[] charArray = new char[i - savedCounter];
+                    for (int j = 0, z = savedCounter; j < charArray.Length && z < clearText.Length; j++, z++)
+                    {
+                        charArray[j] = clearText[z];
+                    }
+                    curvaArray[o] = new string(charArray);
+                    o++;
+                    savedCounter = i + 1;
+                    savedCounterPlus = o;
+                }
+            }
+            for (int i = savedCounter; i < clearText.Length; i++)
+            {
+                char[] charArray = new char[clearText.Length - savedCounter];
+                for (int j = 0, z = savedCounter; j < clearText.Length && z < clearText.Length; j++, z++)
+                {
+                    charArray[j] = clearText[z];
+                }
+                curvaArray[savedCounterPlus] = new string(charArray);
+            }
+            return curvaArray;
+        }
+        //Quest22
+        public int GetCountOfWords(string text)
+        {
+            string clearText = techService.ClearText(text);
+            if (string.IsNullOrEmpty(clearText) || string.IsNullOrWhiteSpace(clearText))
+            {
+                Console.WriteLine("Сработала защита в GetCountOfWords");
+                return 0;
+            }
+            char[] charArray = new char[clearText.Length];
+            for (int i = 0; i < clearText.Length; i++)
+            {
+                charArray[i] = clearText[i];
+            }
+            int countOfSpaces = 1;
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                if (char.IsWhiteSpace(charArray[i]))
+                {
+                    countOfSpaces++;
+                }
+            }
+            return countOfSpaces;
+        }
+        //Quest24
+        public string GetLongestWord(string text)
+        {
+            string clearText = techService.ClearText(text);
+            if (string.IsNullOrEmpty(clearText) || string.IsNullOrWhiteSpace(clearText))
+            {
+                Console.WriteLine("Сработала защита в GetLongestWord");
+                return null;
+            }
+            string[] wordsArray = clearText.Split(" ");
+            int maxValue = 0;
+            for (int i = 0; i < wordsArray.Length; i++)
+            {
+                if (maxValue < wordsArray[i].Length)
+                {
+                    maxValue = wordsArray[i].Length;
+                }
+            }
+            for (int i = 0; i < wordsArray.Length; i++)
+            {
+                if (wordsArray[i].Length == maxValue)
+                {
+                    return wordsArray[i];
+                }
+            }
+            return null;
+        }
+        //Quest25
+        public int GetLongestSubstringLength(string text)
+        {
+            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            {
+                Console.WriteLine("Сработала защита в GetLongestSubstringLength");
+                return 0;
+            }
+            char[] charArray = new char[text.Length];
+            for (int i = 0; i < text.Length; i++)
+            {
+                charArray[i] = text[i];
+            }
+            int[] countsOfLetters = new int[text.Length];
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                countsOfLetters[i] = 1;
+            }
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                for (int j = i + 1; j < charArray.Length; j++)
+                {
+                    if (charArray[i] == charArray[j])
+                    {
+                        countsOfLetters[i]++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            int maxValue = 0;
+            for (int i = 0; i < countsOfLetters.Length; i++)
+            {
+                if (maxValue < countsOfLetters[i])
+                {
+                    maxValue = countsOfLetters[i];
+                }
+            }
+            return maxValue;
+        }
+        //Quest27
+        public int GetCountOfDigits(string text)
+        {
+            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            {
+                Console.WriteLine("Сработала защита в GetCountOfDigits");
+                return 0;
+            }
+            int countOfDigits = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (char.IsDigit(text[i]))
+                {
+                    countOfDigits++;
+                }
+            }
+            return countOfDigits;
         }
     }
 }
