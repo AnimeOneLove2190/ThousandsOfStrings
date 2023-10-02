@@ -25,12 +25,8 @@ namespace Project01
                 Console.WriteLine("Сработала защита в начальном сегменте ClearText");
                 return null;
             }
-            char[] copy = new char[text.Length];
-            for (int i = 0; i < copy.Length; i++)
-            {
-                copy[i] = text[i];
-            }
-            const char Space = (char)32;
+            char[] copy = text.ToCharArray();
+            const char Space = ' ';
             for (int i = 0; i < text.Length; i++)
             {
                 if (char.IsDigit(text[i]) || char.IsSymbol(text[i]) || char.IsWhiteSpace(text[i]) || char.IsPunctuation(text[i]))
@@ -38,21 +34,21 @@ namespace Project01
                     copy[i] = Space;
                 }
             }
-            string textCopy = new string(copy);
-            while (textCopy.Contains("  "))
+            text = new string(copy);
+            while (text.Contains("  "))
             {
-                textCopy = textCopy.Replace("  ", " ");
+                text = text.Replace("  ", " ");
             }
-            if (char.IsWhiteSpace(copy[0]))
+            if (char.IsWhiteSpace(text[0]))
             {
-                textCopy = textCopy.Trim();
+                text = text.Trim();
             }
-            if (string.IsNullOrEmpty(textCopy))
+            if (string.IsNullOrEmpty(text))
             {
                 Console.WriteLine("Сработала защита в последнем сегменте ClearText");
                 return null;
             }
-            return textCopy;
+            return text;
         }
         public void BubbleSort(char[] charArray)
         {

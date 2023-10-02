@@ -19,7 +19,7 @@ namespace Project01
             int countOfSearchLetter = textService.GetCountOfSearchLetter(meaninglessTextOne, 't');
             Console.WriteLine(countOfSearchLetter);
             //Quest11
-            string firstLetter = textService.GetFirstLetterInWord(meaninglessTextOne);
+            char firstLetter = textService.GetFirstLetterInWord(meaninglessTextOne);
             Console.WriteLine(firstLetter);
             //Quest12
             string name = "mikasa Akkerman";
@@ -27,7 +27,7 @@ namespace Project01
             Console.WriteLine(upperName);
             //Quest13
             string fio = "Зубенко Михаил Петрович";
-            string surnameAndInitials = textService.GetSurnameAndInitials(fio);
+            string surnameAndInitials = textService.GetSurnameAndInitialsXyita(fio);
             Console.WriteLine(surnameAndInitials);
             //Quest14
             string substring = textService.GetSubstring(fio, 1, 22);
