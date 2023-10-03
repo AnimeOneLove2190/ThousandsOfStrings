@@ -79,48 +79,7 @@ namespace Project01
             text = new string(charArray);
             return text;
         }
-        //Quest13 Xyita
-        public string GetSurnameAndInitialsXyita(string text)
-        {
-            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
-            {
-                Console.WriteLine("Сработала защита в GetSurnameAndInitials");
-                return null;
-            }
-            char[] charArray = new char[text.Length];
-            for (int i = 0; i < text.Length; i++)
-            {
-                charArray[i] = text[i];
-            }
-            string[] initials = new string[2];
-            int savedCounter = 0;
-            char[] charSurname = new char[text.Length];
-            for (int i = 1; i <= charArray.Length; i++)
-            {
-                if (char.IsUpper(charArray[i]))
-                {
-                    charSurname = new char[i];
-                    for (int j = 0; j < charSurname.Length; j++)
-                    {
-                        charSurname[j] = charArray[j];
-                    }
-                    savedCounter = i;
-                    break;
-                }
-            }
-            for (int i = savedCounter, j = 0; i < text.Length && j < initials.Length; i++)
-            {
-                if (char.IsUpper(charArray[i]))
-                {
-                    initials[j] = $"{charArray[i]}";
-                    j++;
-                }
-            }
-            string surname = new string(charSurname);
-            string surnameAndInitials = $"{surname} {initials[0]}. {initials[1]}.";
-            return surnameAndInitials;
-        }
-        //Quest13 я не знаю как ту страшную хуиту с одного параметра на три перевести
+        //Quest13
         public string GetSurnameAndInitials(string surname, string name, string fatherName)
         {
             if (string.IsNullOrEmpty(surname) || string.IsNullOrWhiteSpace(surname) || string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name) || string.IsNullOrEmpty(fatherName) || string.IsNullOrWhiteSpace(fatherName))

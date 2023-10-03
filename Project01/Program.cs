@@ -26,10 +26,13 @@ namespace Project01
             string upperName = textService.UpFirstLetterInWord(name);
             Console.WriteLine(upperName);
             //Quest13
-            string fio = "Зубенко Михаил Петрович";
-            string surnameAndInitials = textService.GetSurnameAndInitialsXyita(fio);
+            string surname = "Зубенко Михаил Петрович";
+            string mafiaName = "Зубенко Михаил Петрович";
+            string fatherName = "Зубенко Михаил Петрович";
+            string surnameAndInitials = textService.GetSurnameAndInitials(surname, mafiaName, fatherName);
             Console.WriteLine(surnameAndInitials);
             //Quest14
+            string fio = "Зубенко Михаил Петрович";
             string substring = textService.GetSubstring(fio, 1, 22);
             Console.WriteLine(substring);
             //Quest15
